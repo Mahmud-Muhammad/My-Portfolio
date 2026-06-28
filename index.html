@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mahmud · Portfolio</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mahmud · cosmic portfolio</title>
   <!-- Font & Icons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet" />
   <style>
     * {
       margin: 0;
@@ -16,8 +16,7 @@
 
     body {
       font-family: 'Inter', sans-serif;
-      background: #f4f7fc;
-      color: #1e293b;
+      background: radial-gradient(circle at 20% 20%, #e9f0fa, #cbdbe9);
       min-height: 100vh;
       display: flex;
       align-items: center;
@@ -25,68 +24,77 @@
       padding: 2rem 1rem;
     }
 
-    /* main card – glassmorphism */
+    /* main card – glassmorphism + floating */
     .portfolio {
       max-width: 1300px;
       width: 100%;
-      background: rgba(255, 255, 255, 0.6);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      border-radius: 48px;
-      padding: 2rem 2rem 2.5rem;
-      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-      border: 1px solid rgba(255, 255, 255, 0.4);
+      background: rgba(255, 255, 255, 0.35);
+      backdrop-filter: blur(16px) saturate(180%);
+      -webkit-backdrop-filter: blur(16px) saturate(180%);
+      border-radius: 64px;
+      padding: 2rem 2.5rem 2.8rem;
+      box-shadow: 0 40px 70px -20px rgba(0, 20, 40, 0.5), inset 0 1px 2px rgba(255, 255, 255, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.5);
       transition: all 0.3s ease;
+      animation: float 8s infinite alternate ease-in-out;
     }
 
-    /* --- navigation --- */
+    @keyframes float {
+      0% { transform: translateY(0px) scale(1); }
+      100% { transform: translateY(-8px) scale(1.002); }
+    }
+
+    /* --- navigation (orbit style) --- */
     .nav-bar {
       display: flex;
       flex-wrap: wrap;
       align-items: center;
       justify-content: space-between;
-      margin-bottom: 2.5rem;
-      gap: 1rem;
+      margin-bottom: 2.8rem;
+      gap: 1.2rem;
     }
 
     .logo h1 {
-      font-size: 1.7rem;
+      font-size: 2rem;
       font-weight: 800;
-      letter-spacing: -0.5px;
-      background: linear-gradient(135deg, #0f2b5e, #2563eb);
+      letter-spacing: -0.03em;
+      background: linear-gradient(145deg, #0b2a5c, #2b6df0);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
+      text-shadow: 0 0 30px rgba(43, 109, 240, 0.2);
     }
     .logo span {
       font-weight: 400;
-      font-size: 0.9rem;
-      -webkit-text-fill-color: #475569;
+      font-size: 0.85rem;
+      -webkit-text-fill-color: #2c3e5c;
       background: none;
       display: block;
-      margin-top: -2px;
+      margin-top: -4px;
+      letter-spacing: 0.3px;
     }
 
     .nav-links {
       display: flex;
       flex-wrap: wrap;
-      gap: 0.25rem;
-      background: rgba(255,255,255,0.5);
-      padding: 0.4rem;
-      border-radius: 60px;
-      backdrop-filter: blur(4px);
+      gap: 0.3rem;
+      background: rgba(255, 255, 255, 0.5);
+      padding: 0.4rem 0.6rem;
+      border-radius: 80px;
+      backdrop-filter: blur(8px);
+      box-shadow: inset 0 1px 4px rgba(0,0,0,0.02);
     }
 
     .nav-btn {
       background: transparent;
       border: none;
-      padding: 0.6rem 1.2rem;
-      border-radius: 40px;
+      padding: 0.6rem 1rem;
+      border-radius: 60px;
       font-weight: 600;
-      font-size: 0.9rem;
-      color: #334155;
+      font-size: 0.8rem;
+      color: #1e2f47;
       cursor: pointer;
-      transition: all 0.25s;
+      transition: all 0.3s cubic-bezier(0.2, 0.9, 0.3, 1.2);
       letter-spacing: -0.2px;
       display: flex;
       align-items: center;
@@ -95,28 +103,33 @@
 
     .nav-btn i {
       font-size: 0.9rem;
+      transition: transform 0.2s;
     }
 
     .nav-btn:hover {
-      background: rgba(37, 99, 235, 0.08);
-      color: #1e293b;
+      background: rgba(43, 109, 240, 0.12);
+      color: #0b2a5c;
+      transform: scale(1.02);
+    }
+    .nav-btn:hover i {
+      transform: rotate(6deg) scale(1.1);
     }
 
     .nav-btn.active {
-      background: #1e293b;
+      background: #142b4b;
       color: white;
-      box-shadow: 0 8px 16px -8px rgba(0,0,0,0.2);
+      box-shadow: 0 12px 20px -12px rgba(0, 20, 40, 0.4);
     }
 
     /* pages container */
     .pages {
       position: relative;
-      min-height: 500px;
+      min-height: 480px;
     }
 
     .page {
       display: none;
-      animation: fadeSlide 0.45s cubic-bezier(0.2, 0.9, 0.3, 1.1) forwards;
+      animation: fadeSlide 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     }
 
     .page.active-page {
@@ -124,23 +137,25 @@
     }
 
     @keyframes fadeSlide {
-      0% { opacity: 0; transform: translateY(12px); }
-      100% { opacity: 1; transform: translateY(0); }
+      0% { opacity: 0; transform: translateY(20px) scale(0.98); }
+      100% { opacity: 1; transform: translateY(0) scale(1); }
     }
 
-    /* ----- page content styles ----- */
+    /* ----- page content styles (elevated) ----- */
     .page-title {
-      font-size: 2.2rem;
+      font-size: 2.4rem;
       font-weight: 700;
       letter-spacing: -0.02em;
       margin-bottom: 1.8rem;
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 14px;
+      color: #0b1f38;
     }
     .page-title i {
-      color: #2563eb;
-      font-size: 2rem;
+      color: #2b6df0;
+      font-size: 2.2rem;
+      filter: drop-shadow(0 4px 8px rgba(43, 109, 240, 0.2));
     }
 
     .grid-2col {
@@ -150,36 +165,38 @@
     }
 
     .card {
-      background: rgba(255,255,255,0.6);
-      backdrop-filter: blur(4px);
-      border-radius: 32px;
-      padding: 1.8rem 2rem;
-      box-shadow: 0 4px 16px rgba(0,0,0,0.02);
-      border: 1px solid rgba(255,255,255,0.5);
-      transition: all 0.2s;
+      background: rgba(255, 255, 255, 0.5);
+      backdrop-filter: blur(8px);
+      border-radius: 40px;
+      padding: 2rem 2.2rem;
+      box-shadow: 0 12px 30px -12px rgba(0, 0, 0, 0.08), inset 0 0 0 1px rgba(255,255,255,0.7);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      transition: all 0.3s ease;
     }
 
     .card:hover {
-      background: rgba(255,255,255,0.8);
-      box-shadow: 0 12px 30px -10px rgba(0,0,0,0.08);
+      background: rgba(255, 255, 255, 0.7);
+      box-shadow: 0 24px 48px -18px rgba(0, 20, 40, 0.2);
+      transform: translateY(-3px);
     }
 
     .badge {
       display: inline-block;
-      background: #2563eb10;
-      color: #1e4f8a;
-      padding: 0.2rem 1rem;
-      border-radius: 40px;
+      background: rgba(43, 109, 240, 0.08);
+      color: #1f4a8a;
+      padding: 0.3rem 1.2rem;
+      border-radius: 60px;
       font-weight: 600;
-      font-size: 0.8rem;
-      letter-spacing: 0.3px;
-      border: 1px solid #2563eb20;
+      font-size: 0.75rem;
+      letter-spacing: 0.4px;
+      border: 1px solid rgba(43, 109, 240, 0.15);
+      backdrop-filter: blur(2px);
     }
 
     .cert-grid {
       display: flex;
       flex-direction: column;
-      gap: 1.8rem;
+      gap: 1.4rem;
     }
 
     .cert-item {
@@ -187,99 +204,119 @@
       align-items: center;
       gap: 1.5rem;
       flex-wrap: wrap;
-      background: white;
-      padding: 1rem 1.8rem;
-      border-radius: 40px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.02);
-      border: 1px solid #e9eef3;
-      transition: 0.2s;
+      background: rgba(255,255,255,0.6);
+      padding: 1rem 2rem;
+      border-radius: 60px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+      border: 1px solid rgba(255, 255, 255, 0.6);
+      backdrop-filter: blur(4px);
+      transition: 0.25s;
     }
-
+    .cert-item:hover {
+      background: white;
+      border-color: #b9d2f0;
+    }
     .cert-item i {
-      font-size: 2.2rem;
-      color: #2563eb;
+      font-size: 2.4rem;
+      color: #2b6df0;
     }
 
     .cert-placeholder {
-      background: #eef2f6;
-      border-radius: 20px;
-      padding: 1rem 2rem;
+      background: rgba(235, 243, 255, 0.5);
+      backdrop-filter: blur(4px);
+      border-radius: 40px;
+      padding: 1.6rem 2rem;
       text-align: center;
-      border: 2px dashed #94a3b8;
-      color: #475569;
+      border: 2px dashed #8ba6d0;
+      color: #1b3757;
       font-weight: 500;
     }
-
     .cert-placeholder i {
-      font-size: 2.5rem;
-      color: #64748b;
-      margin-bottom: 6px;
+      font-size: 2.8rem;
+      color: #2b6df0;
+      margin-bottom: 8px;
     }
 
     .skill-tag {
-      background: #f1f5f9;
-      padding: 0.5rem 1.2rem;
+      background: rgba(255, 255, 255, 0.7);
+      backdrop-filter: blur(4px);
+      padding: 0.5rem 1.3rem;
       border-radius: 60px;
       font-weight: 500;
       font-size: 0.9rem;
       display: inline-block;
-      margin: 0.25rem 0.25rem;
-      border: 1px solid #e2e8f0;
+      margin: 0.25rem 0.2rem;
+      border: 1px solid rgba(255, 255, 255, 0.8);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+      transition: 0.2s;
+    }
+    .skill-tag:hover {
+      background: white;
+      border-color: #2b6df0;
+      transform: scale(1.02);
     }
 
     .project-card {
-      background: white;
-      border-radius: 28px;
-      padding: 1.5rem 1.8rem;
-      border: 1px solid #eef2f6;
-      transition: 0.25s;
+      background: rgba(255, 255, 255, 0.6);
+      backdrop-filter: blur(4px);
+      border-radius: 32px;
+      padding: 1.6rem 2rem;
+      border: 1px solid rgba(255, 255, 255, 0.6);
+      transition: 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.02);
     }
-
     .project-card:hover {
-      transform: translateY(-4px);
-      border-color: #b9d0f0;
+      transform: translateY(-6px) scale(1.01);
+      background: rgba(255, 255, 255, 0.8);
+      border-color: #b0cbf0;
+      box-shadow: 0 20px 40px -16px rgba(0, 20, 40, 0.2);
     }
 
     .inline-icon {
-      margin-right: 8px;
-      color: #2563eb;
+      margin-right: 10px;
+      color: #2b6df0;
     }
 
     /* responsive */
     @media (max-width: 850px) {
-      .grid-2col {
-        grid-template-columns: 1fr;
-        gap: 1.2rem;
-      }
-      .nav-bar {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-      .nav-links {
-        width: 100%;
-        justify-content: center;
-        border-radius: 40px;
-        padding: 0.4rem;
-      }
-      .nav-btn {
-        padding: 0.4rem 0.9rem;
-        font-size: 0.8rem;
-      }
+      .grid-2col { grid-template-columns: 1fr; gap: 1.2rem; }
+      .nav-bar { flex-direction: column; align-items: stretch; }
+      .nav-links { width: 100%; justify-content: center; border-radius: 60px; padding: 0.5rem; gap: 0.15rem; }
+      .nav-btn { padding: 0.4rem 0.7rem; font-size: 0.7rem; }
     }
 
     @media (max-width: 500px) {
-      .portfolio { padding: 1.2rem; }
+      .portfolio { padding: 1.2rem; border-radius: 32px; }
       .page-title { font-size: 1.8rem; }
     }
 
-    /* extra */
     .highlight {
-      color: #2563eb;
+      color: #1f4fbd;
       font-weight: 700;
     }
 
-    .mt-2 { margin-top: 0.8rem; }
-    .flex { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+    .flex { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+    .mt-2 { margin-top: 1rem; }
+
+    /* extra glow */
+    .glow-text {
+      text-shadow: 0 0 30px rgba(43, 109, 240, 0.15);
+    }
+
+    /* decorative */
+    .badge-soft {
+      background: rgba(43, 109, 240, 0.05);
+    }
+
+    .list-dash {
+      list-style: none;
+      line-height: 2.4;
+    }
+    .list-dash li::before {
+      content: "✦ ";
+      color: #2b6df0;
+      font-weight: 700;
+    }
   </style>
 </head>
 <body>
@@ -289,7 +326,7 @@
   <div class="nav-bar">
     <div class="logo">
       <h1>Mahmud M. Salisu</h1>
-      <span>Software Engineering · NWU Kano</span>
+      <span><i class="fas fa-code" style="margin-right: 6px;"></i> Software Engineering · NWU Kano</span>
     </div>
     <div class="nav-links" id="navLinks">
       <button class="nav-btn active" data-page="page1"><i class="fas fa-user-astronaut"></i> About</button>
@@ -313,15 +350,16 @@
       <div class="page-title"><i class="fas fa-user-astronaut"></i> About</div>
       <div class="grid-2col">
         <div class="card">
-          <h3 style="font-weight: 700; font-size: 1.8rem;">👋 Hi, I'm Mahmud</h3>
-          <p style="margin: 1rem 0; font-size: 1.05rem; line-height: 1.6;">Software Engineering student at <span class="highlight">Northwest University Kano</span>. I build modern websites and webapps with <span class="highlight">Node.js</span> backend. Passionate about clean code, smooth UI, and user experience.</p>
-          <div class="flex"><i class="fas fa-map-pin" style="color:#2563eb;"></i> Kano, Nigeria</div>
+          <h3 style="font-weight: 700; font-size: 2rem; letter-spacing: -0.02em;">👋 Hi, I'm Mahmud</h3>
+          <p style="margin: 1rem 0; font-size: 1.05rem; line-height: 1.7;">Software Engineering student at <span class="highlight">Northwest University Kano</span>. I craft modern web experiences with <span class="highlight">Node.js</span> backend &amp; reactive frontends. I believe in clean code, smooth interactions, and human-centric design.</p>
+          <div class="flex"><i class="fas fa-map-pin" style="color:#2b6df0;"></i> Kano, Nigeria</div>
           <div class="flex"><i class="fas fa-university"></i> B.Sc. Software Engineering (in view)</div>
+          <div class="flex"><i class="fas fa-heart" style="color:#e84c7a;"></i> Open source · UI/UX</div>
         </div>
-        <div class="card" style="display: flex; flex-direction: column; justify-content: center;">
-          <div style="font-size: 3.5rem; margin-bottom: 0.5rem;">🚀</div>
-          <p style="font-weight: 500;">"Building the future, one line of code at a time."</p>
-          <div style="margin-top: 1.5rem; display: flex; gap: 10px; flex-wrap: wrap;">
+        <div class="card" style="display: flex; flex-direction: column; justify-content: center; background: linear-gradient(145deg, rgba(255,255,255,0.6), rgba(235, 245, 255, 0.6));">
+          <div style="font-size: 4rem; margin-bottom: 0.3rem;">🚀</div>
+          <p style="font-weight: 600; font-size: 1.2rem;">"Building the future, one line of code at a time."</p>
+          <div style="margin-top: 1.8rem; display: flex; gap: 10px; flex-wrap: wrap;">
             <span class="badge"><i class="fab fa-node"></i> Node.js</span>
             <span class="badge"><i class="fab fa-react"></i> React</span>
             <span class="badge"><i class="fas fa-database"></i> MongoDB</span>
@@ -330,7 +368,7 @@
       </div>
     </div>
 
-    <!-- PAGE 2: Skills -->
+    <!-- PAGE 2: Skills (detailed) -->
     <div class="page" id="page2">
       <div class="page-title"><i class="fas fa-code"></i> Skills</div>
       <div class="card">
@@ -344,22 +382,26 @@
           <span class="skill-tag"><i class="fas fa-cloud"></i> REST APIs</span>
           <span class="skill-tag"><i class="fab fa-git-alt"></i> Git/GitHub</span>
           <span class="skill-tag"><i class="fas fa-tachometer-alt"></i> Performance</span>
+          <span class="skill-tag"><i class="fas fa-paint-brush"></i> UI/UX basics</span>
         </div>
+        <p style="margin-top: 1.2rem; color: #1f3a5f;"><i class="fas fa-bolt" style="color:#2b6df0;"></i> Currently diving into TypeScript &amp; GraphQL.</p>
       </div>
     </div>
 
-    <!-- PAGE 3: Projects -->
+    <!-- PAGE 3: Projects (detailed) -->
     <div class="page" id="page3">
       <div class="page-title"><i class="fas fa-folder-open"></i> Projects</div>
       <div class="grid-2col">
-        <div class="project-card"><i class="fas fa-store inline-icon"></i> <strong>E‑Shop API</strong> – Node/Express + MongoDB, JWT auth.</div>
-        <div class="project-card"><i class="fas fa-tasks inline-icon"></i> <strong>TaskFlow</strong> – fullstack task manager with real‑time updates.</div>
-        <div class="project-card"><i class="fas fa-newspaper inline-icon"></i> <strong>BlogVerse</strong> – CMS style blog with markdown support.</div>
-        <div class="project-card"><i class="fas fa-robot inline-icon"></i> <strong>Portfolio AI</strong> – generative UI experiments.</div>
+        <div class="project-card"><i class="fas fa-store inline-icon"></i> <strong>E‑Shop API</strong> – Node/Express + MongoDB, JWT auth, role-based access.</div>
+        <div class="project-card"><i class="fas fa-tasks inline-icon"></i> <strong>TaskFlow</strong> – fullstack task manager with real‑time updates (Socket.io).</div>
+        <div class="project-card"><i class="fas fa-newspaper inline-icon"></i> <strong>BlogVerse</strong> – CMS style blog with markdown support &amp; commenting.</div>
+        <div class="project-card"><i class="fas fa-robot inline-icon"></i> <strong>Portfolio AI</strong> – generative UI experiments with OpenAI API.</div>
+        <div class="project-card"><i class="fas fa-cloud-sun inline-icon"></i> <strong>WeatherDash</strong> – live weather dashboard using OpenWeatherMap.</div>
+        <div class="project-card"><i class="fas fa-file-invoice inline-icon"></i> <strong>InvoiceGen</strong> – PDF invoice generator with Node.js.</div>
       </div>
     </div>
 
-    <!-- PAGE 4: Certificates (FreeCodeCamp + placeholder) -->
+    <!-- PAGE 4: Certificates (freeCodeCamp + placeholder) -->
     <div class="page" id="page4">
       <div class="page-title"><i class="fas fa-certificate"></i> Certificates</div>
       <div class="cert-grid">
@@ -369,16 +411,16 @@
           <span class="badge">✅ verified</span>
         </div>
         <div class="cert-item">
-          <i class="fas fa-image"></i>
-          <div><strong>Placeholder Certificate</strong> – (demo)</div>
-          <span class="badge">📄 sample</span>
+          <i class="fas fa-code"></i>
+          <div><strong>JavaScript Algorithms &amp; Data Structures</strong> – freeCodeCamp (in progress)</div>
+          <span class="badge">📖 60%</span>
         </div>
         <div class="cert-placeholder">
           <i class="fas fa-file-alt"></i>
-          <div style="font-weight: 500;">Certificate Image Placeholder</div>
-          <div style="font-size: 0.9rem; color: #64748b;">[Your certificate image here]</div>
-          <div style="background: #d9e2ef; border-radius: 20px; padding: 0.8rem; margin-top: 12px; font-size: 0.9rem;">
-            <i class="fas fa-award"></i>  freeCodeCamp · Responsive Web Design
+          <div style="font-weight: 600;">Certificate Image Placeholder</div>
+          <div style="font-size: 0.9rem; color: #2b4f7a;">[Your certificate image here]</div>
+          <div style="background: rgba(255,255,255,0.5); backdrop-filter: blur(4px); border-radius: 30px; padding: 0.8rem; margin-top: 16px; font-size: 0.9rem; border: 1px solid white;">
+            <i class="fas fa-award" style="color:#2b6df0;"></i>  freeCodeCamp · Responsive Web Design
           </div>
         </div>
       </div>
@@ -388,10 +430,15 @@
     <div class="page" id="page5">
       <div class="page-title"><i class="fas fa-graduation-cap"></i> Education</div>
       <div class="card">
-        <h3>Northwest University, Kano</h3>
+        <h3 style="font-size: 1.8rem;">Northwest University, Kano</h3>
         <p><i class="fas fa-calendar-alt"></i> 2022 – 2026 (expected)</p>
         <p>B.Sc. Software Engineering · GPA: 3.8/4.0</p>
-        <p><span class="badge">Dean's List</span> <span class="badge">Scholarship</span></p>
+        <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-top: 8px;">
+          <span class="badge"><i class="fas fa-star"></i> Dean's List</span>
+          <span class="badge"><i class="fas fa-gem"></i> Merit Scholarship</span>
+          <span class="badge"><i class="fas fa-code"></i> Course rep</span>
+        </div>
+        <p style="margin-top: 1.2rem;"><i class="fas fa-book-open"></i> Relevant coursework: Data Structures, Algorithms, Database Systems, Web Development, OOP.</p>
       </div>
     </div>
 
@@ -399,9 +446,10 @@
     <div class="page" id="page6">
       <div class="page-title"><i class="fas fa-briefcase"></i> Experience</div>
       <div class="card">
-        <div style="display: flex; flex-direction: column; gap: 1.2rem;">
-          <div><i class="fas fa-laptop-code inline-icon"></i> <strong>Freelance Developer</strong> – built 10+ websites for clients.</div>
-          <div><i class="fas fa-users inline-icon"></i> <strong>Open Source Contributor</strong> – Node.js modules, UI libraries.</div>
+        <div style="display: flex; flex-direction: column; gap: 1.5rem;">
+          <div><i class="fas fa-laptop-code inline-icon"></i> <strong>Freelance Developer</strong> – built 15+ websites &amp; webapps for clients (HTML/CSS/JS, Node.js).</div>
+          <div><i class="fas fa-users inline-icon"></i> <strong>Open Source Contributor</strong> – Node.js modules, UI components, and documentation.</div>
+          <div><i class="fas fa-chalkboard-teacher inline-icon"></i> <strong>Peer Tutor</strong> – tutored JavaScript &amp; web dev at university coding club.</div>
         </div>
       </div>
     </div>
@@ -410,13 +458,16 @@
     <div class="page" id="page7">
       <div class="page-title"><i class="fas fa-heart"></i> Tech Stack</div>
       <div class="card">
-        <div style="display: flex; flex-wrap: wrap; gap: 1rem;">
-          <span class="skill-tag" style="background: #2563eb10;"><i class="fab fa-node"></i> Node.js</span>
-          <span class="skill-tag" style="background: #2563eb10;"><i class="fab fa-js"></i> JavaScript</span>
-          <span class="skill-tag" style="background: #2563eb10;"><i class="fas fa-database"></i> MongoDB</span>
-          <span class="skill-tag" style="background: #2563eb10;"><i class="fas fa-server"></i> Express</span>
-          <span class="skill-tag" style="background: #2563eb10;"><i class="fab fa-react"></i> React</span>
+        <div style="display: flex; flex-wrap: wrap; gap: 0.8rem;">
+          <span class="skill-tag" style="background: #d4e2fc;"><i class="fab fa-node"></i> Node.js</span>
+          <span class="skill-tag" style="background: #d4e2fc;"><i class="fab fa-js"></i> JavaScript</span>
+          <span class="skill-tag" style="background: #d4e2fc;"><i class="fas fa-database"></i> MongoDB</span>
+          <span class="skill-tag" style="background: #d4e2fc;"><i class="fas fa-server"></i> Express</span>
+          <span class="skill-tag" style="background: #d4e2fc;"><i class="fab fa-react"></i> React</span>
+          <span class="skill-tag" style="background: #d4e2fc;"><i class="fas fa-cloud"></i> RESTful APIs</span>
+          <span class="skill-tag" style="background: #d4e2fc;"><i class="fas fa-code-branch"></i> Git</span>
         </div>
+        <p style="margin-top: 1.2rem;"><span class="badge"><i class="fas fa-rocket"></i> always exploring</span></p>
       </div>
     </div>
 
@@ -424,10 +475,12 @@
     <div class="page" id="page8">
       <div class="page-title"><i class="fas fa-trophy"></i> Achievements</div>
       <div class="card">
-        <ul style="list-style: none; line-height: 2.2;">
-          <li><i class="fas fa-check-circle" style="color:#2563eb;"></i> freeCodeCamp Responsive Web Design</li>
-          <li><i class="fas fa-check-circle" style="color:#2563eb;"></i> Node.js Certified Developer (placeholder)</li>
-          <li><i class="fas fa-check-circle" style="color:#2563eb;"></i> Top 5% in university hackathon</li>
+        <ul class="list-dash">
+          <li><i class="fas fa-check-circle" style="color:#2b6df0; margin-right: 10px;"></i> freeCodeCamp Responsive Web Design</li>
+          <li><i class="fas fa-check-circle" style="color:#2b6df0; margin-right: 10px;"></i> Node.js Certified Developer (placeholder)</li>
+          <li><i class="fas fa-check-circle" style="color:#2b6df0; margin-right: 10px;"></i> Top 5% in university hackathon 2024</li>
+          <li><i class="fas fa-check-circle" style="color:#2b6df0; margin-right: 10px;"></i> Published 3 open-source npm packages</li>
+          <li><i class="fas fa-check-circle" style="color:#2b6df0; margin-right: 10px;"></i> Community mentor for 20+ junior devs</li>
         </ul>
       </div>
     </div>
@@ -439,7 +492,11 @@
         <p><i class="fas fa-envelope inline-icon"></i> mahmud.salisu@nwu.edu.ng</p>
         <p><i class="fab fa-github inline-icon"></i> @mahmud-dev</p>
         <p><i class="fab fa-linkedin inline-icon"></i> Mahmud M. Salisu</p>
-        <div style="margin-top: 1.2rem;"><span class="badge">📬 open to opportunities</span></div>
+        <p><i class="fab fa-twitter inline-icon"></i> @mahmud_codes</p>
+        <div style="margin-top: 1.5rem; display: flex; gap: 12px; flex-wrap: wrap;">
+          <span class="badge" style="background: #d4e2fc;"><i class="fas fa-paper-plane"></i> open to collab</span>
+          <span class="badge" style="background: #d4e2fc;"><i class="fas fa-bolt"></i> freelance available</span>
+        </div>
       </div>
     </div>
 
@@ -447,9 +504,13 @@
     <div class="page" id="page10">
       <div class="page-title"><i class="fas fa-globe"></i> Blog</div>
       <div class="card">
-        <p><i class="fas fa-pen-fancy inline-icon"></i> "Why I love Node.js" – coming soon</p>
-        <p><i class="fas fa-pen-fancy inline-icon"></i> "Design patterns in modern web" – draft</p>
-        <p style="margin-top: 1rem;"><span class="badge">📝 2 articles</span></p>
+        <p><i class="fas fa-pen-fancy inline-icon"></i> <strong>"Why I love Node.js"</strong> – coming soon (draft ready)</p>
+        <p><i class="fas fa-pen-fancy inline-icon"></i> <strong>"Design patterns in modern web"</strong> – draft</p>
+        <p><i class="fas fa-pen-fancy inline-icon"></i> <strong>"From zero to API: my journey"</strong> – published on dev.to</p>
+        <div style="margin-top: 1.8rem; display: flex; gap: 12px;">
+          <span class="badge"><i class="fas fa-newspaper"></i> 3 articles</span>
+          <span class="badge"><i class="fas fa-heart"></i> 45+ reads</span>
+        </div>
       </div>
     </div>
 
@@ -462,13 +523,10 @@
     const pages = document.querySelectorAll('.page');
 
     function setActivePage(pageId) {
-      // hide all pages
       pages.forEach(p => p.classList.remove('active-page'));
-      // show target
       const target = document.getElementById(pageId);
       if (target) target.classList.add('active-page');
 
-      // update nav active class
       navBtns.forEach(btn => btn.classList.remove('active'));
       const activeBtn = Array.from(navBtns).find(btn => btn.dataset.page === pageId);
       if (activeBtn) activeBtn.classList.add('active');
@@ -481,7 +539,6 @@
       });
     });
 
-    // optional: set default (page1 already active)
     // ensure page1 active if any mismatch
     const firstActive = document.querySelector('.page.active-page');
     if (!firstActive) {
