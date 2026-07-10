@@ -3,21 +3,24 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Mahmud · Portfolio</title>
+  <title>Mahmud · Cosmic Portfolio</title>
+  <!-- Font & Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet" />
   <style>
+    /* ----- reset & base ----- */
     * { margin:0; padding:0; box-sizing:border-box; }
     body {
       font-family: 'Inter', sans-serif;
       min-height: 100vh;
-      background: linear-gradient(-45deg, #e9f0fa, #b7d2f5, #87baff, #fff0e5);
+      background: linear-gradient(-45deg, #e9f0fa, #b7d2f5, #87baff, #fff0e5, #f6d5f7, #cbdbe9);
       background-size: 400% 400%;
       animation: gradientBG 18s ease infinite;
       display: flex;
       align-items: center;
       justify-content: center;
       padding: 2rem 1rem;
+      overflow-x: hidden;
     }
     @keyframes gradientBG {
       0% { background-position: 0% 50%; }
@@ -25,159 +28,268 @@
       100% { background-position: 0% 50%; }
     }
 
-    .portfolio {
-      max-width: 1200px;
-      width: 100%;
-      background: rgba(255,255,255,0.3);
-      backdrop-filter: blur(20px);
-      border-radius: 60px;
-      padding: 2rem 2.5rem;
-      box-shadow: 0 40px 80px -20px rgba(43,109,240,0.2);
-      border: 1px solid rgba(255,255,255,0.5);
+    /* ----- sparkles (cosmic dust) ----- */
+    .sparkle {
+      position: fixed;
+      pointer-events: none;
+      z-index: 999;
+      width: 100vw;
+      height: 100vh;
+      top:0; left:0;
+      overflow: hidden;
+    }
+    .sparkle span {
+      position: absolute;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: radial-gradient(circle, #f8d478 70%, #fff6a0 100%);
+      opacity: 0.25;
+      filter: blur(1.5px);
+      animation: sparkle-float 4.2s infinite alternate ease-in-out;
+    }
+    @keyframes sparkle-float {
+      0% { transform: translateY(0px) scale(0.8); opacity:0.15; }
+      100% { transform: translateY(-32px) scale(1.1); opacity:0.4; }
     }
 
-    /* Navigation */
+    /* ----- main card (glassmorphism) ----- */
+    .portfolio {
+      max-width: 1400px;
+      width: 100%;
+      background: rgba(255,255,255,0.35);
+      backdrop-filter: blur(26px) saturate(140%);
+      -webkit-backdrop-filter: blur(26px) saturate(140%);
+      border-radius: 70px;
+      padding: 2.6rem 3.2rem 3.2rem;
+      box-shadow: 0 48px 80px -24px rgba(43,109,240,0.18),
+                  0 2px 4px rgba(255,255,255,0.6),
+                  0 0 160px rgba(183,210,245,0.3);
+      border: 1.5px solid rgba(255,255,255,0.55);
+      transition: all 0.3s cubic-bezier(0.23, 0.88, 0.3, 1.1);
+      animation: float 9s infinite alternate ease-in-out;
+      position: relative;
+      z-index: 2;
+    }
+    @keyframes float {
+      0% { transform: translateY(0px) scale(1); }
+      100% { transform: translateY(-12px) scale(1.005); }
+    }
+
+    /* ----- navigation ----- */
     .nav-bar {
       display: flex;
       flex-wrap: wrap;
       align-items: center;
       justify-content: space-between;
-      margin-bottom: 2rem;
-      gap: 1rem;
+      margin-bottom: 2.6rem;
+      gap: 1.2rem;
+      position: relative;
     }
     .logo h1 {
-      font-size: 1.8rem;
+      font-size: 2.2rem;
       font-weight: 900;
-      background: linear-gradient(120deg, #132c77, #0069d9);
+      letter-spacing: -0.02em;
+      background: linear-gradient(120deg, #132c77 25%, #0069d9 80%, #a8e063 120%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
+      background-clip: text;
+      filter: drop-shadow(0 2px 14px rgba(34,137,240,0.2));
     }
     .logo span {
-      font-size: 0.85rem;
-      color: #1f4a7a;
+      font-weight: 400;
+      font-size: 0.9rem;
+      -webkit-text-fill-color: #1f4a7a;
+      background: none;
       display: block;
+      margin-top: -2px;
+      letter-spacing: 0.3px;
     }
+
     .nav-links {
       display: flex;
       flex-wrap: wrap;
-      gap: 0.3rem;
-      background: rgba(255,255,255,0.6);
-      padding: 0.3rem 0.7rem;
-      border-radius: 60px;
+      gap: 0.2rem;
+      background: rgba(255,255,255,0.7);
+      padding: 0.4rem 0.9rem;
+      border-radius: 80px;
+      backdrop-filter: blur(8px);
+      box-shadow: inset 0 2px 12px rgba(43,109,240,0.08);
+      border: 1px solid rgba(255,255,255,0.75);
     }
     .nav-btn {
       background: transparent;
       border: none;
-      padding: 0.4rem 0.9rem;
-      border-radius: 40px;
+      padding: 0.5rem 1rem;
+      border-radius: 60px;
       font-weight: 600;
-      font-size: 0.8rem;
+      font-size: 0.85rem;
       color: #1e3a5f;
       cursor: pointer;
-      transition: all 0.3s;
+      transition: all 0.28s cubic-bezier(0.18, 1.2, 0.3, 1.1);
       display: flex;
       align-items: center;
-      gap: 5px;
+      gap: 6px;
+      white-space: nowrap;
     }
+    .nav-btn i { font-size: 1.1em; transition: transform 0.2s; }
     .nav-btn:hover {
-      background: rgba(75,164,245,0.15);
+      background: rgba(75,164,245,0.13);
+      color: #0a1e3f;
       transform: scale(1.05);
+      box-shadow: 0 6px 14px -6px rgba(33,150,243,0.15);
     }
+    .nav-btn:hover i { color: #2372ff; transform: rotate(8deg) scale(1.1); }
     .nav-btn.active {
-      background: #142b4b;
+      background: linear-gradient(95deg, #142b4b 80%, #ffd86c 110%);
       color: white;
-      box-shadow: 0 4px 12px rgba(20,43,75,0.3);
+      box-shadow: 0 14px 24px -18px rgba(0,20,40,0.5),
+                  0 0 14px 2px rgba(255,216,108,0.3);
+      font-weight: 800;
     }
-    .nav-btn i { font-size: 1em; }
 
-    /* Pages */
-    .page { display: none; animation: fadeIn 0.4s ease; }
+    /* ----- hero video (self-hosted) ----- */
+    .hero-video-intro {
+      border-radius: 32px 32px 32px 80px;
+      overflow: hidden;
+      box-shadow: 0 20px 60px -16px rgba(43,109,240,0.25),
+                  inset 0 0 0 4px rgba(255,255,255,0.4);
+      margin-bottom: 2.8rem;
+      background: linear-gradient(115deg, #d2e3fb 60%, #fae7fc 100%);
+      position: relative;
+      z-index: 2;
+      transition: all 0.4s;
+    }
+    .hero-video-intro video {
+      width: 100%;
+      height: 310px;
+      display: block;
+      background: #0d1a2b;
+      object-fit: cover;
+    }
+    .hero-caption {
+      position: absolute;
+      bottom: 18px;
+      right: 30px;
+      background: rgba(18,40,80,0.88);
+      backdrop-filter: blur(6px);
+      color: #fff;
+      padding: 0.4rem 1.2rem;
+      border-radius: 40px 16px 40px 16px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      box-shadow: 0 4px 18px -4px rgba(0,0,0,0.2);
+      display: flex;
+      align-items: center;
+      gap: 0.5em;
+      border: 1px solid rgba(255,255,255,0.2);
+    }
+    .hero-caption i { color: #ffd866; font-size: 1.3em; }
+
+    /* ----- pages & cards ----- */
+    .page { display: none; animation: fadeSlide 0.5s ease both; }
     .page.active-page { display: block; }
-    @keyframes fadeIn {
+    @keyframes fadeSlide {
       0% { opacity:0; transform: translateY(10px); }
       100% { opacity:1; transform: translateY(0); }
     }
 
     .page-title {
-      font-size: 2rem;
+      font-size: 2.2rem;
       font-weight: 800;
-      margin-bottom: 1.5rem;
-      color: #04315f;
+      letter-spacing: -0.02em;
+      margin-bottom: 1.8rem;
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 14px;
+      color: #04315f;
+      filter: drop-shadow(0 2px 12px rgba(43,109,240,0.15));
     }
-    .page-title i { color: #2b6df0; }
+    .page-title i { color: #2b6df0; font-size: 2rem; }
 
     .card {
-      background: rgba(255,255,255,0.6);
-      border-radius: 32px;
-      padding: 1.5rem 2rem;
-      box-shadow: 0 8px 32px -12px rgba(0,0,0,0.08);
+      background: rgba(255,255,255,0.55);
+      backdrop-filter: blur(6px);
+      border-radius: 44px;
+      padding: 1.8rem 2rem;
+      box-shadow: 0 16px 40px -18px rgba(0,0,0,0.08),
+                  inset 0 1px 2px rgba(255,255,255,0.9);
       border: 1px solid rgba(255,255,255,0.6);
+      transition: all 0.25s;
+    }
+    .card:hover {
+      box-shadow: 0 24px 48px -22px rgba(43,109,240,0.12);
+      background: rgba(255,255,255,0.7);
     }
 
     .grid-2col {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 1.5rem;
+      gap: 2rem;
     }
 
+    /* badges, tags */
     .badge {
       background: rgba(43,109,240,0.08);
-      padding: 0.25rem 1rem;
+      padding: 0.3rem 1.1rem;
       border-radius: 40px;
-      font-size: 0.8rem;
+      font-size: 0.85rem;
       font-weight: 600;
       color: #1a3a66;
       display: inline-flex;
       align-items: center;
-      gap: 0.3rem;
+      gap: 0.4rem;
+      border: 1px solid rgba(255,255,255,0.5);
     }
     .skill-tag {
       background: rgba(30,50,90,0.06);
-      padding: 0.3rem 1rem;
-      border-radius: 40px;
+      padding: 0.4rem 1.1rem;
+      border-radius: 60px;
       font-weight: 600;
-      font-size: 0.85rem;
+      font-size: 0.9rem;
       color: #12315e;
       display: inline-flex;
       align-items: center;
-      gap: 0.4rem;
+      gap: 0.5rem;
       border: 1px solid rgba(255,255,255,0.4);
+      backdrop-filter: blur(4px);
+      transition: 0.15s;
+    }
+    .skill-tag:hover {
+      background: rgba(43,109,240,0.12);
+      transform: scale(1.02);
     }
     .flex { display: flex; align-items: center; gap: 0.5rem; }
     .highlight { color: #1f5bbf; font-weight: 700; }
-    .text-muted { color: #2b4f78; }
+    .glow-text { text-shadow: 0 0 12px rgba(43,109,240,0.15); }
 
-    /* Profile Image */
-    .profile-img {
-      width: 150px;
-      height: 150px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 4px solid white;
-      box-shadow: 0 8px 24px rgba(34,120,240,0.2);
-      background: #d4e2fc;
-    }
-
-    /* Certification */
+    /* ----- CERTIFICATION - PRO PORTRAIT STYLE ----- */
     .cert-portrait {
-      max-width: 400px;
+      max-width: 480px;
       margin: 0 auto;
-      background: white;
-      border-radius: 28px;
-      padding: 1.5rem;
-      box-shadow: 0 20px 60px -20px rgba(43,109,240,0.2);
-      text-align: center;
+      background: rgba(255,255,255,0.7);
+      border-radius: 32px;
+      padding: 1.8rem;
+      box-shadow: 0 20px 60px -20px rgba(43,109,240,0.2),
+                  inset 0 1px 2px rgba(255,255,255,0.9);
+      border: 1px solid rgba(255,255,255,0.7);
+      transition: all 0.4s cubic-bezier(0.23, 0.88, 0.3, 1.1);
+    }
+    .cert-portrait:hover {
+      transform: translateY(-6px) scale(1.01);
+      box-shadow: 0 32px 80px -24px rgba(43,109,240,0.3);
     }
     .cert-portrait .cert-image {
       width: 100%;
-      aspect-ratio: 3/4;
-      border-radius: 16px;
+      aspect-ratio: 3/4; /* Portrait ratio */
+      border-radius: 20px;
       overflow: hidden;
       background: #e8edf5;
-      margin-bottom: 1rem;
+      box-shadow: 0 8px 24px -8px rgba(0,0,0,0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
     }
     .cert-portrait .cert-image img {
       width: 100%;
@@ -185,134 +297,235 @@
       object-fit: cover;
       display: block;
     }
-    .cert-portrait h3 {
-      font-size: 1.2rem;
+    .cert-portrait .cert-image .placeholder {
+      font-size: 5rem;
+      color: #2b6df0;
+      opacity: 0.3;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .cert-portrait .cert-image .placeholder i {
+      font-size: 5rem;
+    }
+    .cert-portrait .cert-image .placeholder span {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #1a3a66;
+      opacity: 0.6;
+    }
+    .cert-portrait .cert-details {
+      margin-top: 1.2rem;
+      text-align: center;
+    }
+    .cert-portrait .cert-details h3 {
+      font-size: 1.3rem;
       font-weight: 800;
       color: #0b255b;
+      margin-bottom: 0.2rem;
     }
-    .cert-portrait .issuer {
+    .cert-portrait .cert-details .issuer {
       color: #2b4f78;
       font-weight: 500;
+      font-size: 0.95rem;
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 0.4rem;
     }
-    .cert-portrait .issuer i { color: #2b6df0; }
-    .cert-portrait .date {
+    .cert-portrait .cert-details .issuer i {
+      color: #2b6df0;
+    }
+    .cert-portrait .cert-details .date {
       color: #4a6a8a;
       font-size: 0.85rem;
       margin-top: 0.2rem;
     }
-    .cert-badge {
+    .cert-portrait .cert-badge {
       display: inline-block;
       margin-top: 0.8rem;
-      background: #142b4b;
+      background: linear-gradient(95deg, #142b4b 80%, #ffd86c 110%);
       color: white;
       padding: 0.4rem 1.5rem;
       border-radius: 60px;
       font-weight: 700;
       font-size: 0.85rem;
-      border: none;
-      cursor: pointer;
-    }
-    .cert-badge:hover {
-      background: #1a3a6a;
-      transform: scale(1.05);
+      letter-spacing: 0.3px;
+      box-shadow: 0 4px 16px -6px rgba(43,109,240,0.25);
     }
 
-    /* Music Toggle */
+    /* responsive */
+    @media (max-width: 920px) {
+      .portfolio { padding: 1.6rem 1.4rem; border-radius: 32px; }
+      .hero-video-intro video { height: 200px; }
+      .hero-caption { right: 12px; bottom: 10px; font-size: 0.75rem; padding: 0.2rem 0.8rem; }
+      .grid-2col { grid-template-columns: 1fr; gap: 1.4rem; }
+      .nav-bar { flex-direction: column; align-items: stretch; gap: 0.8rem; }
+      .nav-links { width: 100%; justify-content: center; padding: 0.4rem; gap: 0.1rem; border-radius: 40px; }
+      .nav-btn { padding: 0.3rem 0.6rem; font-size: 0.7rem; }
+      .logo h1 { font-size: 1.7rem; }
+      .cert-portrait { max-width: 380px; }
+    }
+    @media (max-width: 550px) {
+      .hero-video-intro { border-radius: 24px; }
+      .hero-video-intro video { height: 150px; }
+      .page-title { font-size: 1.6rem; }
+      .card { padding: 1.2rem 1rem; border-radius: 28px; }
+      .cert-portrait { max-width: 100%; padding: 1rem; }
+      .cert-portrait .cert-image { aspect-ratio: 3/4; }
+    }
+
+    /* ----- extra polish ----- */
+    .profile-img {
+      width: 150px; height: 150px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid #fff;
+      box-shadow: 0 8px 30px -8px rgba(34,120,240,0.25);
+      background: #d4e2fc;
+    }
+    .text-muted { color: #2b4f78; }
+
+    /* video fallback overlay */
+    .video-fallback {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, #0d1a2b 0%, #1a2f4a 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 1.2rem;
+      border-radius: inherit;
+      padding: 2rem;
+      text-align: center;
+      gap: 0.8rem;
+    }
+    .video-fallback i {
+      font-size: 3.5rem;
+      color: #ffd866;
+      opacity: 0.9;
+    }
+    .video-fallback span {
+      font-weight: 300;
+      opacity: 0.8;
+    }
+
+    /* music control */
     .music-toggle {
       position: fixed;
       bottom: 24px;
       right: 24px;
-      background: rgba(255,255,255,0.9);
+      z-index: 1000;
+      background: rgba(255,255,255,0.75);
+      backdrop-filter: blur(12px);
       border: 1px solid rgba(255,255,255,0.8);
       border-radius: 60px;
-      padding: 0.6rem 1.2rem;
+      padding: 0.7rem 1.2rem;
+      font-size: 0.9rem;
       font-weight: 600;
       color: #1a3a66;
       cursor: pointer;
+      transition: all 0.3s;
       box-shadow: 0 8px 24px -8px rgba(0,0,0,0.1);
       display: flex;
       align-items: center;
       gap: 8px;
-      z-index: 1000;
-      font-size: 0.85rem;
     }
-    .music-toggle:hover { transform: scale(1.05); }
-    .music-toggle i { color: #2b6df0; }
-
-    /* Responsive */
-    @media (max-width: 768px) {
-      .portfolio { padding: 1rem; border-radius: 32px; }
-      .grid-2col { grid-template-columns: 1fr; }
-      .nav-bar { flex-direction: column; align-items: stretch; }
-      .nav-links { justify-content: center; padding: 0.3rem; }
-      .nav-btn { padding: 0.3rem 0.6rem; font-size: 0.7rem; }
-      .logo h1 { font-size: 1.4rem; }
-      .cert-portrait { max-width: 100%; }
+    .music-toggle:hover {
+      transform: scale(1.05);
+      background: rgba(255,255,255,0.9);
+      box-shadow: 0 12px 32px -12px rgba(43,109,240,0.2);
+    }
+    .music-toggle i { font-size: 1.2rem; color: #2b6df0; }
+    @media (max-width: 600px) {
+      .music-toggle { bottom: 16px; right: 16px; padding: 0.5rem 1rem; font-size: 0.75rem; }
     }
   </style>
 </head>
 <body>
+<div class="sparkle" id="sparkles"></div>
+<div class="portfolio" id="app">
 
-<div class="portfolio">
+  <!-- HERO VIDEO -->
+  <div class="hero-video-intro" id="heroVideoContainer">
+    <video id="heroVideo" muted autoplay loop playsinline preload="metadata">
+      <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+    </video>
+    <div class="video-fallback" id="videoFallback" style="display:none;">
+      <i class="fas fa-video"></i>
+      <div>🎬 <strong>Software Engineering</strong> · Intro</div>
+      <span>Building the future, one line at a time</span>
+    </div>
+    <span class="hero-caption">
+      <i class="fas fa-play-circle"></i> Software Engineering · Code &amp; Design
+    </span>
+  </div>
 
   <!-- NAVIGATION -->
   <div class="nav-bar">
     <div class="logo">
       <h1>Mahmud M. Salisu</h1>
-      <span><i class="fas fa-code"></i> Software Engineering · NWU Kano</span>
+      <span><i class="fas fa-code" style="margin-right:6px;"></i> Software Engineering · NWU Kano</span>
     </div>
-    <div class="nav-links">
-      <button class="nav-btn active" data-page="page1"><i class="fas fa-user"></i> About</button>
+    <div class="nav-links" id="navLinks">
+      <button class="nav-btn active" data-page="page1"><i class="fas fa-user-astronaut"></i> About</button>
       <button class="nav-btn" data-page="page2"><i class="fas fa-code"></i> Skills</button>
-      <button class="nav-btn" data-page="page3"><i class="fas fa-folder"></i> Projects</button>
+      <button class="nav-btn" data-page="page3"><i class="fas fa-folder-open"></i> Projects</button>
       <button class="nav-btn" data-page="page4"><i class="fas fa-certificate"></i> Certs</button>
       <button class="nav-btn" data-page="page5"><i class="fas fa-graduation-cap"></i> Edu</button>
       <button class="nav-btn" data-page="page6"><i class="fas fa-briefcase"></i> Exp</button>
       <button class="nav-btn" data-page="page7"><i class="fas fa-heart"></i> Stack</button>
       <button class="nav-btn" data-page="page8"><i class="fas fa-trophy"></i> Achieve</button>
       <button class="nav-btn" data-page="page9"><i class="fas fa-envelope"></i> Contact</button>
+      <button class="nav-btn" data-page="page10"><i class="fas fa-globe"></i> Blog</button>
     </div>
   </div>
 
   <!-- PAGES -->
   <div class="pages">
-
     <!-- PAGE 1: About -->
     <div class="page active-page" id="page1">
-      <div class="page-title"><i class="fas fa-user"></i> About</div>
+      <div class="page-title"><i class="fas fa-user-astronaut"></i> About</div>
       <div class="grid-2col">
-        <div class="card">
-          <h3 style="font-size:1.8rem; font-weight:800; color:#0b255b;">👋 I'm Mahmud</h3>
-          <p style="margin:1rem 0; line-height:1.7; color:#193978;">
+        <div class="card" style="display:flex; flex-direction:column; justify-content:center; background:linear-gradient(107deg,#f6fafd 60%,#eaf4ff 100%);">
+          <h3 style="font-weight:800; font-size:2rem; letter-spacing:-0.02em; display:flex; align-items:center; gap:8px; color:#0b255b;">
+            👋 I'm <span style="color:#3481e4;">Mahmud</span>
+            <span style="font-size:0.8rem; background:rgba(43,109,240,0.08); padding:0.1rem 1rem; border-radius:60px; font-weight:500; color:#1f4a8a;">he/him</span>
+          </h3>
+          <p style="margin:1rem 0 1.2rem; font-size:1.05rem; line-height:1.7; color:#193978;">
             Software Engineering student at <span class="highlight">Northwest University Kano</span>.
-            Passionate about crafting web experiences with <span class="highlight">Node.js</span> backends
-            and reactive frontends.
+            Passionate about crafting web experiences with <span class="highlight">Node.js</span> backends and reactive frontends.
+            Clean code, buttery interactions, human‑centric design.
           </p>
           <div style="display:flex; flex-direction:column; gap:0.5rem;">
-            <div class="flex"><i class="fas fa-map-pin" style="color:#2b6df0;"></i> Kano, Nigeria</div>
-            <div class="flex"><i class="fas fa-university"></i> B.Sc. Software Engineering (in view)</div>
-            <div class="flex"><i class="fas fa-heart" style="color:#e84c7a;"></i> Open source · UI/UX</div>
-            <div class="flex"><i class="fas fa-calendar-alt"></i> 2nd year · 2026 grad</div>
+            <div class="flex"><i class="fas fa-map-pin" style="color:#2b6df0; width:1.4rem;"></i> Kano, Nigeria</div>
+            <div class="flex"><i class="fas fa-university" style="width:1.4rem;"></i> B.Sc. Software Engineering (in view)</div>
+            <div class="flex"><i class="fas fa-heart" style="color:#e84c7a; width:1.4rem;"></i> Open source · UI/UX</div>
+            <div class="flex"><i class="fas fa-calendar-alt" style="width:1.4rem;"></i> 2nd year · 2026 grad</div>
           </div>
-          <div style="margin-top:1rem; display:flex; gap:8px; flex-wrap:wrap;">
+          <div style="margin-top:1.4rem; display:flex; gap:8px; flex-wrap:wrap;">
             <span class="badge"><i class="fas fa-code"></i> 20+ projects</span>
             <span class="badge"><i class="fas fa-users"></i> 15+ clients</span>
             <span class="badge"><i class="fas fa-star"></i> 4.8 GPA</span>
           </div>
         </div>
-        <div class="card" style="display:flex; flex-direction:column; align-items:center; text-align:center;">
-          <img src="public/mahmud.jpg" alt="Mahmud" class="profile-img" 
-               onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22150%22 height=%22150%22%3E%3Crect fill=%22%23d4e2fc%22 width=%22150%22 height=%22150%22/%3E%3Ctext x=%2275%22 y=%2285%22 text-anchor=%22middle%22 font-size=%2260%22%3E🧑‍💻%3C/text%3E%3C/svg%3E';">
-          <div style="font-size:2rem; margin:0.5rem 0;">🚀</div>
-          <p style="font-weight:700; font-size:1.1rem; color:#0b1f38;">"Building the future, one line at a time."</p>
-          <div style="margin-top:0.8rem; display:flex; gap:6px; flex-wrap:wrap; justify-content:center;">
-            <span class="badge" style="background:#1e293b; color:white;"><i class="fab fa-node"></i> Node.js</span>
-            <span class="badge" style="background:#1e293b; color:white;"><i class="fab fa-react"></i> React</span>
-            <span class="badge" style="background:#1e293b; color:white;"><i class="fas fa-database"></i> MongoDB</span>
+        <div class="card" style="display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; background:linear-gradient(145deg,rgba(255,255,255,0.92),rgba(235,245,255,0.8)); padding:1.8rem 1.5rem;">
+          <div style="width:150px; height:150px; border-radius:50%; overflow:hidden; border:4px solid #fff; box-shadow:0 8px 30px -8px rgba(34,120,240,0.2); margin-bottom:1rem; background:#d4e2fc; display:flex; align-items:center; justify-content:center;">
+            <img src="public/mahmud.jpg" alt="Mahmud M. Salisu" style="width:100%; height:100%; object-fit:cover; display:block;" onerror="this.style.display='none'; this.parentElement.innerHTML='<span style=\'font-size:4.5rem;\'>🧑‍💻</span>';">
+          </div>
+          <div style="font-size:2.2rem; margin-bottom:0.2rem;">🚀</div>
+          <p style="font-weight:700; font-size:1.2rem; color:#0b1f38; max-width:280px;" class="glow-text">"Building the future, one line at a time."</p>
+          <div style="margin-top:1rem; display:flex; gap:6px; flex-wrap:wrap; justify-content:center;">
+            <span class="badge" style="background:#1e293b; color:white; border:none;"><i class="fab fa-node"></i> Node.js</span>
+            <span class="badge" style="background:#1e293b; color:white; border:none;"><i class="fab fa-react"></i> React</span>
+            <span class="badge" style="background:#1e293b; color:white; border:none;"><i class="fas fa-database"></i> MongoDB</span>
+          </div>
+          <div style="margin-top:0.7rem; display:flex; gap:0.8rem; font-size:0.85rem; color:#1f4a7a;">
+            <span><i class="fas fa-check-circle" style="color:#2b6df0;"></i> 2+ years</span>
+            <span><i class="fas fa-check-circle" style="color:#2b6df0;"></i> 10+ deployed</span>
           </div>
         </div>
       </div>
@@ -325,158 +538,229 @@
         <div style="display:flex; flex-wrap:wrap; gap:0.6rem;">
           <span class="skill-tag"><i class="fab fa-html5"></i> HTML5</span>
           <span class="skill-tag"><i class="fab fa-css3-alt"></i> CSS3</span>
-          <span class="skill-tag"><i class="fab fa-js"></i> JavaScript</span>
+          <span class="skill-tag"><i class="fab fa-js"></i> JavaScript (ES6+)</span>
           <span class="skill-tag"><i class="fab fa-node"></i> Node.js</span>
           <span class="skill-tag"><i class="fas fa-server"></i> Express.js</span>
           <span class="skill-tag"><i class="fas fa-database"></i> MongoDB</span>
           <span class="skill-tag"><i class="fas fa-cloud"></i> REST APIs</span>
           <span class="skill-tag"><i class="fab fa-git-alt"></i> Git/GitHub</span>
-          <span class="skill-tag"><i class="fas fa-paint-brush"></i> UI/UX</span>
+          <span class="skill-tag"><i class="fas fa-tachometer-alt"></i> Performance</span>
+          <span class="skill-tag"><i class="fas fa-paint-brush"></i> UI/UX basics</span>
         </div>
-        <p style="margin-top:1rem; color:#1f3a5f;"><i class="fas fa-bolt" style="color:#2b6df0;"></i> Currently learning TypeScript &amp; GraphQL.</p>
+        <p style="margin-top:1.2rem; color:#1f3a5f;"><i class="fas fa-bolt" style="color:#2b6df0;"></i> Currently diving into TypeScript &amp; GraphQL.</p>
       </div>
     </div>
 
     <!-- PAGE 3: Projects -->
     <div class="page" id="page3">
-      <div class="page-title"><i class="fas fa-folder"></i> Projects</div>
+      <div class="page-title"><i class="fas fa-folder-open"></i> Projects</div>
       <div class="grid-2col">
-        <div class="card"><h4><i class="fas fa-store"></i> E‑Commerce API</h4><p class="text-muted">Node.js, Express, MongoDB, JWT auth.</p></div>
-        <div class="card"><h4><i class="fas fa-cloud-sun"></i> Weather Dashboard</h4><p class="text-muted">React + OpenWeatherMap API.</p></div>
-        <div class="card"><h4><i class="fas fa-tasks"></i> TaskFlow</h4><p class="text-muted">Kanban board with drag‑and‑drop.</p></div>
-        <div class="card"><h4><i class="fas fa-blog"></i> DevBlog</h4><p class="text-muted">Markdown blog with Node.js & Express.</p></div>
+        <div class="card"><h4><i class="fas fa-store-alt"></i> E‑Commerce API</h4><p class="text-muted">Node.js, Express, MongoDB, JWT auth. Full RESTful backend with payment simulation.</p></div>
+        <div class="card"><h4><i class="fas fa-weather-sun"></i> Weather Dashboard</h4><p class="text-muted">React + OpenWeatherMap. Real‑time forecasts with beautiful animated UI.</p></div>
+        <div class="card"><h4><i class="fas fa-tasks"></i> TaskFlow</h4><p class="text-muted">Kanban board with drag‑and‑drop, built with vanilla JS and local storage.</p></div>
+        <div class="card"><h4><i class="fas fa-blog"></i> DevBlog</h4><p class="text-muted">Markdown‑powered blog engine using Node.js, Express, and EJS.</p></div>
       </div>
     </div>
 
-    <!-- PAGE 4: Certification -->
+    <!-- PAGE 4: CERTIFICATION - PRO PORTRAIT -->
     <div class="page" id="page4">
       <div class="page-title"><i class="fas fa-certificate"></i> Certification</div>
-      <div class="card">
+      <div class="card" style="display:flex; justify-content:center; align-items:center; padding:2rem;">
         <div class="cert-portrait">
           <div class="cert-image">
-            <img src="public/cert.jpg" alt="freeCodeCamp Certification" 
-                 onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22533%22%3E%3Crect fill=%22%23e8edf5%22 width=%22400%22 height=%22533%22/%3E%3Ctext x=%22200%22 y=%22250%22 text-anchor=%22middle%22 font-size=%2260%22%3E📜%3C/text%3E%3Ctext x=%22200%22 y=%22300%22 text-anchor=%22middle%22 font-size=%2220%22 fill=%22%232b4f78%22%3ECertificate%3C/text%3E%3C/svg%3E';">
+            <img src="public/cert.jpg" alt="freeCodeCamp JavaScript Certification" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'placeholder\'><i class=\'fas fa-certificate\'></i><span>JavaScript Certification</span></div>';">
           </div>
-          <h3>JavaScript Algorithms &amp; Data Structures</h3>
-          <div class="issuer"><i class="fas fa-award"></i> freeCodeCamp</div>
-          <div class="date"><i class="far fa-calendar-alt"></i> Issued: December 2024</div>
-          <button class="cert-badge" onclick="alert('✅ Verified: JavaScript Algorithms & Data Structures\nfreeCodeCamp • December 2024')">
-            <i class="fas fa-check-circle"></i> Verify
-          </button>
+          <div class="cert-details">
+            <h3>JavaScript Algorithms &amp; Data Structures</h3>
+            <div class="issuer">
+              <i class="fas fa-award"></i> freeCodeCamp
+            </div>
+            <div class="date">
+              <i class="far fa-calendar-alt"></i> Issued: December 2024
+            </div>
+            <div class="cert-badge">
+              <i class="fas fa-check-circle"></i> Verified
+            </div>
+          </div>
         </div>
       </div>
     </div>
 
-    <!-- PAGE 5: Education -->
+    <!-- PAGE 5: Edu -->
     <div class="page" id="page5">
       <div class="page-title"><i class="fas fa-graduation-cap"></i> Education</div>
-      <div class="card">
-        <h4>Northwest University, Kano</h4>
-        <p>B.Sc. Software Engineering (2023 – 2026) · GPA: 4.8</p>
-      </div>
+      <div class="card"><h4>Northwest University, Kano</h4><p>B.Sc. Software Engineering (2023 – 2026) · GPA: 4.8</p></div>
     </div>
 
-    <!-- PAGE 6: Experience -->
+    <!-- PAGE 6: Exp -->
     <div class="page" id="page6">
       <div class="page-title"><i class="fas fa-briefcase"></i> Experience</div>
-      <div class="card">
-        <h4>Freelance Web Developer</h4>
-        <p>Built 15+ websites & dashboards for local businesses and startups.</p>
-      </div>
+      <div class="card"><h4>Freelance Web Developer</h4><p>Built 15+ websites & dashboards for local businesses and startups.</p></div>
     </div>
 
     <!-- PAGE 7: Stack -->
     <div class="page" id="page7">
       <div class="page-title"><i class="fas fa-heart"></i> Tech Stack</div>
-      <div class="card">
-        <p><strong>Frontend:</strong> React, Vue.js, Tailwind, Vanilla JS</p>
-        <p><strong>Backend:</strong> Node.js, Express, Python (Flask)</p>
-        <p><strong>Database:</strong> MongoDB, PostgreSQL, Firebase</p>
-      </div>
+      <div class="card"><p><strong>Frontend:</strong> React, Vue.js, Tailwind, Vanilla JS<br><strong>Backend:</strong> Node.js, Express, Python (Flask)<br><strong>Database:</strong> MongoDB, PostgreSQL, Firebase</p></div>
     </div>
 
-    <!-- PAGE 8: Achievements -->
+    <!-- PAGE 8: Achieve -->
     <div class="page" id="page8">
       <div class="page-title"><i class="fas fa-trophy"></i> Achievements</div>
-      <div class="card">
-        <ul style="list-style:none; padding-left:0;">
-          <li>🏆 1st place – NWU Hackathon 2024</li>
-          <li>⭐ Open Source contributor – 3 merged PRs</li>
-        </ul>
-      </div>
+      <div class="card"><ul><li>🏆 1st place – NWU Hackathon 2024</li><li>⭐ Open Source contributor – 3 merged PRs</li></ul></div>
     </div>
 
     <!-- PAGE 9: Contact -->
     <div class="page" id="page9">
       <div class="page-title"><i class="fas fa-envelope"></i> Contact</div>
-      <div class="card">
-        <p><i class="fas fa-envelope"></i> mahmud@example.com</p>
-        <p><i class="fab fa-github"></i> github.com/mahmud-dev</p>
-        <p><i class="fab fa-linkedin"></i> linkedin.com/in/mahmud-salisu</p>
-      </div>
+      <div class="card"><p><i class="fas fa-envelope"></i> mahmud@example.com</p><p><i class="fab fa-github"></i> github.com/mahmud-dev</p><p><i class="fab fa-linkedin"></i> linkedin.com/in/mahmud-salisu</p></div>
     </div>
 
+    <!-- PAGE 10: Blog -->
+    <div class="page" id="page10">
+      <div class="page-title"><i class="fas fa-globe"></i> Blog</div>
+      <div class="card"><p>📝 <strong>Latest:</strong> "REST vs GraphQL – a pragmatic take" <br> ✍️ Writing about clean code, dev tools, and career insights.</p></div>
+    </div>
   </div>
 </div>
 
-<!-- Music Toggle -->
+<!-- Background Music Control -->
 <button class="music-toggle" id="musicToggle">
   <i class="fas fa-music" id="musicIcon"></i>
-  <span id="musicLabel">Music Off</span>
+  <span id="musicLabel">Background Music</span>
 </button>
 
-<!-- Audio -->
-<audio id="bg-music" loop preload="auto">
+<!-- Background music (soft lofi) -->
+<audio id="bg-music" loop preload="auto" style="display:none;">
   <source src="https://cdn.pixabay.com/audio/2023/03/28/audio_12d0bcd06b.mp3" type="audio/mpeg">
 </audio>
 
 <script>
-  // Navigation - Simple and clean
-  document.querySelectorAll('.nav-btn').forEach(btn => {
-    btn.addEventListener('click', function() {
-      // Update active button
-      document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
-      this.classList.add('active');
-      
-      // Show correct page
-      const pageId = this.dataset.page;
-      document.querySelectorAll('.page').forEach(p => p.classList.remove('active-page'));
-      document.getElementById(pageId).classList.add('active-page');
+  // Sparkles
+  (function sparkleEffect() {
+    const container = document.getElementById('sparkles');
+    if (!container) return;
+    for (let i = 0; i < 28; i++) {
+      const s = document.createElement('span');
+      s.style.left = Math.random() * 100 + 'vw';
+      s.style.top = Math.random() * 100 + 'vh';
+      s.style.opacity = 0.12 + Math.random() * 0.2;
+      s.style.animationDelay = (Math.random() * 10) + 's';
+      const size = 5 + Math.random() * 9;
+      s.style.width = s.style.height = size + 'px';
+      container.appendChild(s);
+    }
+  })();
+
+  // Navigation
+  (function() {
+    const navBtns = document.querySelectorAll('.nav-btn');
+    const pages = document.querySelectorAll('.page');
+
+    function setActive(pageId) {
+      pages.forEach(p => p.classList.remove('active-page'));
+      const target = document.getElementById(pageId);
+      if (target) target.classList.add('active-page');
+      navBtns.forEach(b => b.classList.remove('active'));
+      const activeBtn = Array.from(navBtns).find(b => b.dataset.page === pageId);
+      if (activeBtn) activeBtn.classList.add('active');
+    }
+
+    navBtns.forEach(btn => {
+      btn.addEventListener('click', function(e) {
+        const pageId = this.dataset.page;
+        if (pageId) setActive(pageId);
+      });
     });
-  });
 
-  // Music Toggle - Simple
-  const audio = document.getElementById('bg-music');
-  const toggleBtn = document.getElementById('musicToggle');
-  const icon = document.getElementById('musicIcon');
-  const label = document.getElementById('musicLabel');
-  let isPlaying = false;
+    if (!document.querySelector('.page.active-page')) {
+      document.getElementById('page1')?.classList.add('active-page');
+      document.querySelector('.nav-btn[data-page="page1"]')?.classList.add('active');
+    }
+  })();
 
-  audio.volume = 0.2;
+  // Background Music with Toggle
+  (function() {
+    const audio = document.getElementById('bg-music');
+    const toggleBtn = document.getElementById('musicToggle');
+    const icon = document.getElementById('musicIcon');
+    const label = document.getElementById('musicLabel');
+    let isPlaying = false;
 
-  toggleBtn.addEventListener('click', function() {
-    if (isPlaying) {
-      audio.pause();
+    if (!audio || !toggleBtn) return;
+
+    audio.volume = 0.2;
+
+    const toggleMusic = () => {
+      if (isPlaying) {
+        audio.pause();
+        icon.className = 'fas fa-music';
+        label.textContent = 'Music Off';
+        isPlaying = false;
+      } else {
+        audio.play().catch(() => {});
+        icon.className = 'fas fa-volume-up';
+        label.textContent = 'Background Music';
+        isPlaying = true;
+      }
+    };
+
+    toggleBtn.addEventListener('click', toggleMusic);
+
+    const tryAutoplay = () => {
+      audio.play().then(() => {
+        isPlaying = true;
+        icon.className = 'fas fa-volume-up';
+        label.textContent = 'Background Music';
+      }).catch(() => {
+        icon.className = 'fas fa-music';
+        label.textContent = 'Music Off';
+        isPlaying = false;
+      });
+    };
+
+    document.addEventListener('click', function initAudio() {
+      if (!isPlaying) {
+        audio.play().catch(() => {});
+      }
+      document.removeEventListener('click', initAudio);
+    }, { once: true });
+
+    tryAutoplay();
+
+    audio.addEventListener('ended', () => {
+      isPlaying = false;
       icon.className = 'fas fa-music';
       label.textContent = 'Music Off';
-      isPlaying = false;
-    } else {
-      audio.play().catch(() => {});
-      icon.className = 'fas fa-volume-up';
-      label.textContent = 'Music On';
-      isPlaying = true;
-    }
-  });
+    });
+  })();
 
-  // Try autoplay
-  audio.play().then(() => {
-    isPlaying = true;
-    icon.className = 'fas fa-volume-up';
-    label.textContent = 'Music On';
-  }).catch(() => {
-    // User must click to enable
-  });
+  // Video fallback
+  (function() {
+    const video = document.getElementById('heroVideo');
+    const fallback = document.getElementById('videoFallback');
+    if (!video || !fallback) return;
+
+    video.addEventListener('error', function() {
+      video.style.display = 'none';
+      fallback.style.display = 'flex';
+    });
+
+    let stallTimer = setTimeout(() => {
+      if (video.readyState < 2) {
+        video.style.display = 'none';
+        fallback.style.display = 'flex';
+      }
+    }, 4000);
+
+    video.addEventListener('canplay', function() {
+      clearTimeout(stallTimer);
+      fallback.style.display = 'none';
+      video.style.display = 'block';
+    });
+
+    video.play().catch(() => {});
+  })();
 </script>
-
 </body>
 </html>
